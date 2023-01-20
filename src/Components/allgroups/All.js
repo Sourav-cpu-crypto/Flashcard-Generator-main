@@ -27,7 +27,7 @@ const All = () => {
         {all.maxcards > 6 &&  all.showall ==="false" ? all.mincards.map((card) => (
           <div className="border border-grey-400 drop-shadow-lg relative 
           grid justify-items-center bg-white mt-14">
-       1
+       
             <img
               src={card.file}
               className="h-20  w-15 absolute top-[-2.5rem] img"
