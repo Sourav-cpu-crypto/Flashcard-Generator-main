@@ -8,7 +8,7 @@ const All = () => {
   const data = useSelector((state) => state.fcard);
   const [all,setall]=useState({showall:"false",mincards:"",maxcards:0})
   function mincardshow(){
-kk
+
   }
   useEffect(()=>{
     if(data.length <=6)
