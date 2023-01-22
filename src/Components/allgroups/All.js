@@ -3,7 +3,7 @@ import './All.css'
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const All = () => {
-  const [fgroups,setfgroups]=useState();
+  const [fgroup,setfgroup]=useState();
   
   const data = useSelector((state) => state.fcard);
   const [all,setall]=useState({showall:"false",mincards:"",maxcards:0})
@@ -11,20 +11,32 @@ const All = () => {
 
   }
   useEffect(()=>{
-    if(data.length <=6)
+    setfgroup([...data]);
+    if(fgroup)
     {
-  setall({...all,mincards:data.slice(0),maxcards:data.length})
+      seeall();
+    }
+
+  },[])
+  function seeall(){
+    if(fgroup.length <=6)
+    {
+      let mincards1=[...fgroup].reverse();
+      console.log("mincards1",data);
+  setall({...all,mincards:[...fgroup].reverse(),maxcards:data.length})
     }
     else{
-      setall({...all,mincards:data.slice(0,6),maxcards:data.length})
+      let mincards2=fgroup.slice(-6).reverse();
+      console.log("mincards2",mincards2)
+      setall({...all,mincards:mincards2,maxcards:data.length})
     }
-  },[])
+  }
   console.log("all",all);
   console.log("fetchdata", data);
   return (
     <div className="max-w-[1100px] mx-auto">
       <div className="grid  mb-10  sm:grid-rows md:grid-cols-3 gap-1  ">
-        {all.maxcards > 6 &&  all.showall ==="false" ? all.mincards.map((card) => (
+        {all?.maxcards > 6 &&  all?.showall ==="false" ? all?.mincards.map((card) => (
           <div className="border border-grey-400 drop-shadow-lg relative 
           grid justify-items-center bg-white mt-14">
        
@@ -46,10 +58,10 @@ const All = () => {
             </Link>
           </div>
         )):
-        data.map((card) => (
+        fgroup?.reverse().map((card) => (
           <div className="border border-grey-400 drop-shadow-lg relative 
           grid justify-items-center bg-white mt-14">
-       1
+       
             <img
               src={card.file}
               className="h-20  w-15 absolute top-[-2.5rem] img"
@@ -69,10 +81,15 @@ const All = () => {
           </div>
         ))}
       </div>
-      {all.maxcards > 6 &&  all.showall ==="false" ?   <button onClick={()=>setall({...all,showall:"true"})}>
+      {all.maxcards > 6 &&  all.showall ==="false" ?   
+      <button onClick={()=>setall({...all,showall:"true"})}>
         see all</button>:
+        all.maxcards > 6 &&  all.showall ==="true" ?
+
   <button onClick={()=>setall({...all,showall:"false"})}>
-  show  min</button> }
+  show  less
+  </button> :""
+  }
     </div>
   );
 };

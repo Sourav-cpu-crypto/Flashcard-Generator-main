@@ -206,7 +206,7 @@ pdf.save('download.pdf');
             <h3 className="font-bold"> Share</h3>
             <div className="mt-3 flex gap-3 w-100">
               <h4 className="border border-black 
-              overflow-scroll">
+              overflow-hidden">
         
               {window.location.href}
           

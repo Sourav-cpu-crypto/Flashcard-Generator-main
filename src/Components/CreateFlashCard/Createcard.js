@@ -14,14 +14,14 @@ const Createcard = () => {
     gname: Yup.string().required('required'),
     gdef: Yup.string()
       .required('required')
-      .max(200, 'defination must be less than 200 characters'),
+      .max(400, 'description must be less than 400 characters'),
 
     terms: Yup.array().of(
       Yup.object().shape({
         term: Yup.string().required('required'),
         desc: Yup.string()
           .required('required')
-          .max(200, 'description must be less than 200 characters'),
+          .max(400, 'description must be less than 400 characters'),
       })
     ),
   });
@@ -100,8 +100,7 @@ const Createcard = () => {
                       )}
                       <div>
                         {values.gname !== '' &&
-                        values.gdef !== '' &&
-                        values.terms[0] !== undefined ? (
+                        values.gdef !== ''  ? (
                           <button
                             className="text-sky-800 pl-6 pb-3 font-bold"
                             type="button"
