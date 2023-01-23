@@ -12,10 +12,9 @@ const cardReducer = (state = INIT_STATE, action) => {
       return [...state,{...action.payload,gid:uuid}];
 
         case DELETE_CARD:
-     
-        let  updatedcard=  state.filter((item)=>item.gid !== action.payload)
-      state=updatedcard
-          return   state;
+    
+  state=action.payload
+          return  state;
 
 
     default:

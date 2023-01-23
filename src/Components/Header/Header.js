@@ -22,7 +22,7 @@ const Header = () => {
             Create New
           </NavLink>
           <NavLink
-            to="/allcard"
+            to="/allfcard"
             className={({ isActive }) =>
               isActive
                 ? "text-red-600 underline underline-offset-8 font-bold"

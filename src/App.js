@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route exact path="/" element={<Createcard />} />
-            <Route exact path="/allcard" element={<All />} />
+            <Route exact path="/allfcard" element={<All />} />
             <Route path="/groupdetails/:id" element={<Carddetails />} />
             <Route path="/groupdetails/:id/:id1" element={<Carddetails />} />
           </Route>

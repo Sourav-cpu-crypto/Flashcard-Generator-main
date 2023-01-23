@@ -4,10 +4,10 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { createflashcard,deleteflashcard } from "../../state/actions/card.js";
-import { reverse } from "lodash";
+
 const All = () => {
   const dispatch = useDispatch();
-  // const [fgroup,setfgroup]=useState("false");
+   const [fgroup,setfgroup]=useState("false");
   
   const data = useSelector((state) => state.fcard);
   console.log("data",data)
@@ -15,57 +15,50 @@ const All = () => {
   function mincardshow(){
 
   }
-//   useEffect(()=>{
-    
-// if(fgroup!=="false"){
-//   seeall1(data);
-// }
-
-
-
-  
-   
- 
-
-//   },[fgroup])
   useEffect(()=>{
-if (data){
-  seeall1(data);
-}
 
+      seeall1(fgroup);
 
+},[fgroup])
+  useEffect(()=>{
 
-  },[])
+  setfgroup(data);
+
+},[])
   function deletecard(gid){
 console.log("id",gid)
-// console.log("data",data)
-//     let filter=data.filter(item=>item.gid !== gid)
-//     console.log("filter",filter)
-//     dispatch(deleteflashcard(data.gid));
+console.log("data",data)
+    let filter=fgroup.filter(item=>item.gid !== gid)
+    console.log("filter",filter)
+    localStorage.setItem('fcard', JSON.stringify(filter));
+    console.log(localStorage.getItem('fcard'));
+    setfgroup(filter);
+     dispatch(deleteflashcard(filter));
+
   }
-  function seeall1(data){
-    console.log("fgroup",data);
-    if(data.length <=6)
+  function seeall1(){
+    console.log("fgroup",fgroup);
+    if(fgroup.length <=6)
     {
-      let mincards1=[...data].reverse();
+      let mincards1=[...fgroup].reverse();
       console.log("mincards1",data);
    
-  setall({...all,possiblecards:mincards1,cardslength:data.length})
+  setall({...all,possiblecards:mincards1,cardslength:[...fgroup].length})
     }
     else{
-      let mincards2=[...data];
-      console.log("mincards2",data)
-      setall({...all,possiblecards:[...data].slice(-6).reverse(),
-        cardslength:[...data].length})
+      let mincards2=[...fgroup];
+      console.log("mincards2",fgroup)
+      setall({...all,possiblecards:[...fgroup].slice(-6).reverse(),
+        cardslength:[...fgroup].length})
     }
   }
   console.log("all",all);
-  console.log("fetchdata", data);
+  console.log("fetchdata", fgroup);
   return (
     <div className="max-w-[1100px] mx-auto">
       <div className="grid  mb-10  sm:grid-rows md:grid-cols-3 gap-1  ">
         {
-        data!=="false" ? all?.cardslength> 6 &&  all?.showall ==="false" ? 
+        fgroup!=="false" ? all?.cardslength> 6 &&  all?.showall ==="false" ? 
        
         
         all.possiblecards.map((card) => (
@@ -88,7 +81,7 @@ console.log("id",gid)
             >
               View Cards
             </Link>
-            <button onClick={()=>deletecard(card.gid)}>delete</button> 
+            <button onClick={(e)=>deletecard(card.gid)}>delete</button> 
           </div>
         )):
         all?.possiblecards ?
@@ -112,7 +105,7 @@ console.log("id",gid)
             >
               View Cards
             </Link>
-           <button onClick={deletecard}>delete</button> 
+           <button onClick={(e)=>deletecard(card.gid)}>delete</button> 
           </div>
         )):"":""
      
@@ -122,13 +115,13 @@ console.log("id",gid)
       </div>
       {all?.cardslength > 6 &&  all?.showall ==="false" ?   
       <button onClick={()=>setall({...all,showall:"true",
-      possiblecards:[...data].reverse()})}>
+      possiblecards:[...fgroup].reverse()})}>
         see all</button>:
         all?.cardslength
         > 6 &&  all?.showall ==="true" ?
 
   <button onClick={()=>setall({...all,showall:"false",
-  possiblecards:[...data].slice(-6).reverse()})}>
+  possiblecards:[...fgroup].slice(-6).reverse()})}>
   see less
   </button> :""
 
