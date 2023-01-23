@@ -40,7 +40,7 @@ const Createcard = () => {
           console.log({values,gid:uuid});
 
           setSubmitting(false);
-          dispatch(createflashcard({...values,gid:uuid}));
+          dispatch(createflashcard({...values,gid:""}));
         }}
       >
         {({

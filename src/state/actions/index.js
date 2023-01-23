@@ -1,4 +1,4 @@
-import {createflashcard} from './card.js'
+import {createflashcard,deleteflashcard} from './card.js'
 
 
-export {createflashcard};
+export {createflashcard,deleteflashcard};
