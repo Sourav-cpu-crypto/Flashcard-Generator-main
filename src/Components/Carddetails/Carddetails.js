@@ -89,10 +89,10 @@ const copyToClipboard = () => {
    if ( p < 2) {
        settermdetails(1);
   
-    navigate(`/groupdetails/${id}/${1}`,{replace:true})
+    navigate(`/groupdetails/${id}/${1}`)
     } else  if(p >= 2){
        
-    navigate(`/groupdetails/${id}/${p}`,{replace:true})
+    navigate(`/groupdetails/${id}/${p}`)
        settermdetails(termdetails - 1);
      }
   }
@@ -139,7 +139,7 @@ pdf.save('download.pdf');
             <Groupcard
             id1={id}
 
-              groupcarddetails={groupcarddetails}readcarddetfromurl={readcarddetfromurl}
+              groupcarddetails={groupcarddetails} readcarddetfromurl={readcarddetfromurl}
               settermdetails={settermdetails}
             />
           )}

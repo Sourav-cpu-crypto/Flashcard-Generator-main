@@ -41,6 +41,7 @@ const Createcard = () => {
 
           setSubmitting(false);
           dispatch(createflashcard({...values,gid:""}));
+          alert("created");
         }}
       >
         {({
