@@ -71,7 +71,7 @@ console.log("data",data)
               alt=""
             />
             <strong className="pt-12 ">{card.gname}</strong>
-            <p className="text-center line-clamp-2 h-12">{card.gdef}</p>
+            <p className="text-center line-clamp-2 h-12 text-clip overflow-hidden">{card.gdef}</p>
             <p className="text-center mt-2">{
             card.terms?card.terms.length===1?`${card.terms.length} 
             card`:`${card.terms.length} cards`:""}</p>
