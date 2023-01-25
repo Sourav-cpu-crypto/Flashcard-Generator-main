@@ -1,12 +1,12 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-const Groupcard = ({ groupcarddetails, settermdetails,id1,termdetails,readcarddetfromurl }) => {
+const Listcard = ({ groupcarddetails, settermdetails,id1,termdetails,readcarddetfromurl }) => {
   const navigate = useNavigate();
   return (
     <div className="p-4">
       <p>Flashcards</p>
-      <hr></hr>
+      <hr></hr> 
       {groupcarddetails?.terms === "" || groupcarddetails?.terms === undefined
         ? ""
         : groupcarddetails.terms.map((allterm, index) => (
@@ -27,5 +27,5 @@ const Groupcard = ({ groupcarddetails, settermdetails,id1,termdetails,readcardde
   );
 };
 
-export default Groupcard;
+export default Listcard;
 

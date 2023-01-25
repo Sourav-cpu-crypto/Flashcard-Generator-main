@@ -6,7 +6,7 @@ import { FiPrinter, FiDownload } from 'react-icons/fi';
 import { HiOutlineShare } from 'react-icons/hi';
 import { BiCopy } from 'react-icons/bi';
 import { FaShare } from 'react-icons/fa';
-import Groupcard from './Groupcard';
+import Groupcard from './Listcard';
 import TermCards from './TermCards';
 import copy from "copy-to-clipboard"; 
 import Modal from 'react-modal';
@@ -29,29 +29,16 @@ const customStyles = {
   },
 };
 
-const PrintorDownload = ({id}) => {
-  const componentRef = useRef();
-//   const handlePrint = useReactToPrint({
-//     content: () => componentRef.current,
-//   });
+const PrintorDownload = ({id1,ref}) => {
+
+
   const navigate = useNavigate();
   let subtitle;
   let shareUrl =window.location.href;
 
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
-  function openModal() {
-    setIsOpen(true);
-  }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
 
   
 
@@ -60,7 +47,7 @@ const PrintorDownload = ({id}) => {
   const data = useSelector((state) => state.fcard);
   useEffect(() => {
     const groupfcard = data.filter((groupfcard) => {
-      return groupfcard.gid == id;
+      return groupfcard.gid == id1;
     });
     setgroupcardetails(groupfcard[0]);
   }, []);
@@ -70,25 +57,45 @@ const PrintorDownload = ({id}) => {
 
 
 
-
   return (
-    <div className="max-w-[1300px] mx-auto mt-7">
-      <div className="grid sm:grid-rows md:grid-cols-4 mt-6 gap-2 bg-red-700">
+    <div ref={ref} className="max-w-[1300px] mx-auto mt-7">
+      <div className="grid sm:grid-rows md:grid-cols-4 mt-6 gap-2 ">
         <div className=" bg-white">
-          {groupcarddetails?.terms === '' ||
-          groupcarddetails?.terms === undefined ? (
+          {groupcarddetails === '' ||
+          groupcarddetails === undefined ? (
             ''
           ) : (
-          
- <div></div>
+     <div>
+ <h1>{`gname   ${groupcarddetails.gname}`}</h1>
+ <p>
+     {`gdef   ${groupcarddetails.gdef}`}
+ </p>
+ {groupcarddetails.file?
+ <img src={groupcarddetails.file}/>:<></>}
+     </div>     
+
           )}
         </div>
-        <div     id="term12" ref={componentRef}  className="col-span-2 rounded items-center">
+        <div     id="term12"   className="col-span-2 rounded items-center">
           {groupcarddetails?.terms === '' ||
           groupcarddetails?.terms === undefined ? (
             ''
           ) : (
-         <div></div>
+         <div>
+         {groupcarddetails.terms.map((allterm, index) => (
+            <div className="flex flex-col rounded  pt-1 sm:w-full">
+        
+ 
+                {allterm.term}
+                <br/>
+                {allterm.desc}
+                <br/>
+                {allterm.img ? <img src={allterm.img}/>:""}
+       
+            
+            </div>
+          ))}
+         </div>
           )}
         </div>
    
