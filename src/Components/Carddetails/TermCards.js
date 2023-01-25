@@ -1,6 +1,6 @@
 import React from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
-import { forwardRef } from 'react';
+
 const TermCards = (({
   groupcarddetails,
   
@@ -24,7 +24,8 @@ const TermCards = (({
             <div className=" ">
               
             { groupcarddetails.terms[id2-1].img == "" || 
-            groupcarddetails.terms[id2-1].img == undefined
+            groupcarddetails.terms[id2-1].img == undefined ||      
+            groupcarddetails.terms[id2-1].img == null
 ? ""  :  
 <img
 className="h-60 w-full rounded-lg "

@@ -11,17 +11,16 @@ const Createcard = () => {
   const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
-    gname: Yup.string().required('required').max(15),
+    gname: Yup.string().required('required').max(15, 'gname must be less than 16 characters'),
     gdef: Yup.string()
       .required('required')
       .max(300, 'description must be less than 300 characters'),
 
     terms: Yup.array().of(
       Yup.object().shape({
-        term: Yup.string().required('required').max(15),
-        desc: Yup.string()
-          .required('required')
-          .max(300, 'description must be less than 300 characters'),
+        term: Yup.string().required('required').max(15, 'term must be less than 16 characters'),
+        desc: Yup.string().required('required').max(300, 
+          'description must be less than 301 characters'),
       })
     ),
   });

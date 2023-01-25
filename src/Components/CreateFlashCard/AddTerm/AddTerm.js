@@ -53,12 +53,15 @@ function AddTerm({
                   placeholder="write the name of group"
                 />
               )}
+              
               {errors.terms &&
-              errors.terms[index] &&
-              errors.terms[index].term &&
-              touched.terms &&
-              touched.terms[index] &&
-              touched.terms[index].term ? (
+            errors.terms[index] &&
+            errors.terms[index].term &&
+            touched.terms &&
+            touched.terms[index] &&
+            touched.terms[index].term
+        
+               ? (
                 <div>{errors.terms[index].term}</div>
               ) : null}
             </div>
